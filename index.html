@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Life Wallpaper — Your Life in Weeks, on Your Home Screen</title>
+<meta name="description" content="The Life Wallpaper is a free Android live wallpaper that turns your life into a grid of dots — one dot per week. A quiet Memento Mori reminder every time you unlock your phone.">
+<style>
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8b949e; --accent:#4fd39c; --card:#161b22; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--fg); line-height:1.7; }
+  .wrap { max-width:760px; margin:0 auto; padding:48px 20px; }
+  header { text-align:center; padding:40px 0 24px; }
+  .dots { display:grid; grid-template-columns:repeat(52, 1fr); gap:2px; max-width:520px; margin:28px auto; }
+  .dots span { aspect-ratio:1; border-radius:50%; background:#21262d; }
+  .dots span.lived { background:var(--accent); }
+  h1 { font-size:2.2rem; line-height:1.25; margin:16px 0 8px; }
+  .sub { color:var(--muted); font-size:1.1rem; margin-bottom:28px; }
+  .btn { display:inline-block; background:var(--accent); color:#06281c; font-weight:700; padding:14px 32px; border-radius:12px; text-decoration:none; font-size:1.05rem; margin:8px 6px; }
+  .btn.ghost { background:transparent; color:var(--accent); border:2px solid var(--accent); }
+  section { margin:44px 0; }
+  h2 { font-size:1.4rem; margin-bottom:12px; }
+  .card { background:var(--card); border:1px solid #30363d; border-radius:14px; padding:22px; margin:14px 0; }
+  .card h3 { margin-bottom:6px; font-size:1.05rem; }
+  .card p { color:var(--muted); font-size:.97rem; }
+  ul { padding-left:20px; color:var(--muted); }
+  li { margin:8px 0; }
+  footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 0 12px; border-top:1px solid #21262d; margin-top:48px; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="dots" id="dots"></div>
+    <h1>The Life Wallpaper</h1>
+    <p class="sub">Your life in weeks &mdash; one dot per week &mdash; drawn quietly on your Android home screen.</p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.skcoder.lifewallpaper">Get it free on Google Play</a>
+  </header>
+
+  <section>
+    <h2>What is it?</h2>
+    <p>The Life Wallpaper is a free Android live wallpaper built around a 2,000-year-old idea: <em>memento mori</em> &mdash; remember that your time is finite. Enter your date of birth and the app renders your life as a minimalist grid of dots. Filled dots are the weeks you've already lived; empty dots are the ones ahead. The wallpaper updates on its own as weeks pass, so the picture stays honest without you doing anything.</p>
+  </section>
+
+  <section>
+    <h2>Why a wallpaper?</h2>
+    <div class="card"><h3>Ambient, not another app to open</h3><p>Every productivity app lives behind an icon you have to remember to tap. Your wallpaper meets you in the half-second before you open social media on autopilot &mdash; exactly when a quiet nudge matters most. Zero willpower required.</p></div>
+    <div class="card"><h3>A number is abstract. A grid is visceral.</h3><p>"2,340 weeks remaining" is easy to ignore. A grid of thousands of dots &mdash; a small filled corner and a vast empty field &mdash; you feel before you think about. That's the whole trick.</p></div>
+    <div class="card"><h3>Lightweight by design</h3><p>A live wallpaper has one unforgivable sin: draining your battery. The grid is static, redrawn only when something actually changes, like a new week ticking over.</p></div>
+  </section>
+
+  <section>
+    <h2>Features</h2>
+    <ul>
+      <li>Life-in-weeks dot grid generated from your date of birth</li>
+      <li>Custom colors for lived weeks, remaining weeks, and background</li>
+      <li>Live preview before you apply anything</li>
+      <li>Automatic updates as weeks pass &mdash; no maintenance</li>
+      <li>No account, no ads, no notifications</li>
+      <li>Free on the Google Play Store</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Get it</h2>
+    <p style="margin-bottom:16px">The Life Wallpaper is free for Android. Set it in under a minute: enter your birthdate, pick your colors, preview, apply.</p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.skcoder.lifewallpaper">Download on Google Play</a>
+    <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.skcoder.lifewallpaper">View on the Play Store</a>
+  </section>
+
+  <section>
+    <h2>FAQ</h2>
+    <div class="card"><h3>Is it really free?</h3><p>Yes. No ads, no in-app purchases, no account needed.</p></div>
+    <div class="card"><h3>Does it drain battery?</h3><p>No. The wallpaper is a static grid that only redraws when the week changes.</p></div>
+    <div class="card"><h3>Where does my birthdate go?</h3><p>It stays on your device &mdash; it's only used to compute the grid.</p></div>
+    <div class="card"><h3>Which Android versions are supported?</h3><p>See the <a href="https://play.google.com/store/apps/details?id=com.skcoder.lifewallpaper">Play Store listing</a> for current requirements.</p></div>
+  </section>
+
+  <footer>
+    <p>Built by Sajjad Ali &mdash; <a href="https://play.google.com/store/apps/details?id=com.skcoder.lifewallpaper">The Life Wallpaper on Google Play</a></p>
+  </footer>
+</div>
+<script>
+  // decorative dot grid: ~30% lived
+  const dots = document.getElementById('dots');
+  const total = 52 * 14;
+  for (let i = 0; i < total; i++) {
+    const s = document.createElement('span');
+    if (i < total * 0.3) s.className = 'lived';
+    dots.appendChild(s);
+  }
+</script>
+</body>
+</html>
